@@ -102,7 +102,7 @@ yarn start
 
 ## Documentation
 
-### **Prepare seting**
+### **Prepare setting**
 
 You can read this [blog](https://blog.tampm.com/posts/next-js-server-side-rendering-vs-static-generation-vs-client-side)
 
@@ -190,6 +190,36 @@ const Example = ({}) => {
       {!isLoading && (
         // render data fetched
       )}
+    </>
+  )
+}
+
+export default Example
+```
+
+#### For special
+
+- Use `ProductStore`
+
+```jsx
+import React, { useEffect } from 'react'
+
+import { useProductStore, ProductActions } from '@/store/ProductStore'
+
+const Example = ({}) => {
+  const { state: { products }, dispatch } = useProductStore()
+
+  useEffect(async () => {
+    // ...
+    // await fetching anything to render
+    //...
+    
+    dispatch(ProductActions.setProductCart(res))
+  }, [])
+
+  return (
+    <>
+      // render data products
     </>
   )
 }
